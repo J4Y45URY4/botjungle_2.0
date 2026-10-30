@@ -1,7 +1,66 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import InteractiveArena from "./components/InteractiveArena";
+
+interface FaqItem {
+  id: string;
+  tag: string;
+  question: string;
+  answer: string;
+}
+
+const faqs: FaqItem[] = [
+  {
+    id: "01",
+    tag: "TEAM SPECS",
+    question: "What is the permitted team size?",
+    answer:
+      "Teams must consist of 2 to 4 members. Inter-college, inter-departmental, and inter-year team combinations are fully welcome, provided every member is a currently enrolled college student.",
+  },
+  {
+    id: "02",
+    tag: "LOCATION",
+    question: "Where is Bot Jungle 2.0 taking place?",
+    answer:
+      "The competition takes place live at the School of Engineering, CUSAT (Cochin University of Science and Technology), South Kalamassery, Kochi, Kerala. Detailed arena coordinates, pit stops, and transit directions will be sent to registered teams.",
+  },
+  {
+    id: "03",
+    tag: "EVENT MODE",
+    question: "Is this an online or offline competition?",
+    answer:
+      "Bot Jungle 2.0 is a 100% offline, on-ground battle arena. All bots will duel, race, and navigate physical custom-fabricated obstacle courses and steel-reinforced combat pits in real time before live spectators and judges.",
+  },
+  {
+    id: "04",
+    tag: "ELIGIBILITY",
+    question: "Who is eligible to participate?",
+    answer:
+      "The event is exclusively open to college and university students (undergraduate, postgraduate, and polytechnic diploma students). Every team member must present a valid physical College ID card at registration and technical inspection.",
+  },
+  {
+    id: "05",
+    tag: "MULTI-ARENA ENTRY",
+    question: "Can our team register for multiple battle arenas?",
+    answer:
+      "Yes! Teams may enter multiple event categories (Roborace, Robocombat, Sumo, Robo Soccer, Pick and Place, and Balance Bot), provided their bot meets the technical weight, dimension, and voltage specifications of each respective arena rulebook.",
+  },
+  {
+    id: "06",
+    tag: "HARDWARE & WORKSPACE",
+    question: "What should teams bring along to the venue?",
+    answer:
+      "Teams must bring their competition bot, remote controllers/transmitters, spare motors, gears, batteries, chargers, and custom mechanical toolkits. The organizers will provide dedicated pit tables with 230V AC charging points and test tracks.",
+  },
+  {
+    id: "07",
+    tag: "PRIZES & CERTIFICATES",
+    question: "Are prizes and certificates awarded?",
+    answer:
+      "Yes! Champions and runners-up across all arenas will win massive cash prize pools, custom winner trophies, and certificates of excellence. Additionally, every verified participant will receive an official Certificate of Participation from Bot Jungle & CUSAT.",
+  },
+];
 
 const rainColumns = [
   { text: "均11ントン0路度ング0ット脳ト1ジ", duration: "13.9s", delay: "-5.2s", opacity: "0.56" },
@@ -21,6 +80,12 @@ const rainColumns = [
 ];
 
 export default function Home() {
+  const [openFaq, setOpenFaq] = useState<number | null>(0);
+
+  const toggleFaq = (index: number) => {
+    setOpenFaq((prev) => (prev === index ? null : index));
+  };
+
   useEffect(() => {
     const R = document.documentElement;
     const cl = (v: number) => Math.max(0, Math.min(1, v));
@@ -192,6 +257,7 @@ export default function Home() {
           <a href="#arenas">Arenas</a>
           <a href="#arena-sim">Arena Sim</a>
           <a href="#ticket">Event</a>
+          <a href="#faq">FAQ</a>
           <a href="#register">Register</a>
         </span>
       </nav>
@@ -462,10 +528,66 @@ export default function Home() {
               </div>
               <div className="ro">
                 <span>Venue</span>
-                <b>To be announced</b>
+                <b>School of Engineering, CUSAT</b>
               </div>
               <div className="perf"></div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="faq-section" id="faq">
+        <div className="faq-wrap">
+          <div className="faq-header">
+            <span className="faq-badge">// PROTOCOLS & QUERIES</span>
+            <h2 className="d faq-title">
+              Frequently
+              <br />
+              Asked Questions
+            </h2>
+            <p className="faq-sub">
+              Key operational intel regarding team requirements, our live battleground at CUSAT, arena protocols, and student eligibility.
+            </p>
+          </div>
+
+          <div className="faq-list">
+            {faqs.map((faq, index) => {
+              const isOpen = openFaq === index;
+              return (
+                <div
+                  key={faq.id}
+                  className={`faq-item ${isOpen ? "active" : ""}`}
+                >
+                  <button
+                    type="button"
+                    className="faq-q"
+                    onClick={() => toggleFaq(index)}
+                    aria-expanded={isOpen}
+                    id={`faq-btn-${faq.id}`}
+                  >
+                    <div className="faq-q-left">
+                      <span className="faq-num">[{faq.id}]</span>
+                      <span className="faq-tag">{faq.tag}</span>
+                      <span className="faq-text">{faq.question}</span>
+                    </div>
+                    <span className="faq-icon" aria-hidden="true">
+                      {isOpen ? "−" : "+"}
+                    </span>
+                  </button>
+                  <div
+                    className="faq-a"
+                    style={{
+                      maxHeight: isOpen ? "260px" : "0",
+                      opacity: isOpen ? 1 : 0,
+                    }}
+                  >
+                    <div className="faq-a-inner">
+                      <p>{faq.answer}</p>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
