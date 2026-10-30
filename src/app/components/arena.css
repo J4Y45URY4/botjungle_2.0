@@ -1,0 +1,733 @@
+/* BOT JUNGLE ARENA SIMULATOR STYLES */
+.arena-section {
+  --ar-bg: #07070a;
+  --ar-panel: #0e0e13;
+  --ar-ink: #f4f4f6;
+  --ar-mute: #8d8d9a;
+  --ar-red: #ff1744;
+  --ar-glow: rgba(255, 23, 68, 0.55);
+  --ar-line: #22222b;
+  position: relative;
+  background-color: var(--ar-bg);
+  color: var(--ar-ink);
+  font: 500 16px "Rajdhani", system-ui, sans-serif;
+  padding: 60px 4vw 80px;
+  border-top: 2px solid #2a1a1f;
+  border-bottom: 2px solid #2a1a1f;
+  background-image: radial-gradient(ellipse at 50% -10%, rgba(255, 23, 68, 0.22), transparent 55%),
+                    linear-gradient(var(--ar-line) 1px, transparent 1px),
+                    linear-gradient(90deg, var(--ar-line) 1px, transparent 1px);
+  background-size: auto, 44px 44px, 44px 44px;
+}
+
+.arena-section::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.2) 0 1px, transparent 1px 3px);
+}
+
+.arena-section header.ar-header {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 12px 18px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.arena-section .ar-logo {
+  width: 48px;
+  height: 48px;
+  border: 2px solid var(--ar-red);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 0 18px var(--ar-glow), inset 0 0 12px var(--ar-glow);
+}
+
+.arena-section h2.ar-title {
+  margin: 0;
+  font: 800 clamp(20px, 4vw, 32px) "Orbitron", sans-serif;
+  letter-spacing: 0.12em;
+  text-shadow: 0 0 16px var(--ar-glow);
+  color: #fff;
+}
+.arena-section h2.ar-title b {
+  color: var(--ar-red);
+}
+
+.arena-section .ar-sub {
+  color: var(--ar-red);
+  font-size: 12px;
+  letter-spacing: 0.45em;
+  font-family: "Space Mono", monospace;
+}
+
+.arena-section .ar-score {
+  margin-left: auto;
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  font: 800 28px "Orbitron", sans-serif;
+  border: 1px solid var(--ar-line);
+  background: var(--ar-panel);
+  padding: 6px 18px;
+  clip-path: polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%);
+}
+
+.arena-section .ar-score small {
+  font: 700 11px "Rajdhani", sans-serif;
+  letter-spacing: 0.25em;
+  color: var(--ar-mute);
+}
+.arena-section .ar-score .w {
+  color: #fff;
+}
+.arena-section .ar-score .r {
+  color: var(--ar-red);
+  text-shadow: 0 0 12px var(--ar-glow);
+}
+.arena-section .ar-score b.pop {
+  display: inline-block;
+  animation: ar-pop 0.6s;
+}
+@keyframes ar-pop {
+  40% {
+    transform: scale(1.7);
+  }
+}
+
+.arena-section .ar-main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 6px 12px 20px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(300px, 340px);
+  gap: 16px;
+  box-sizing: border-box;
+  width: 100%;
+}
+@media (max-width: 960px) {
+  .arena-section .ar-main {
+    grid-template-columns: 1fr;
+  }
+}
+
+.arena-section .ar-stage-wrap {
+  position: relative;
+  border: 1px solid var(--ar-line);
+  background: rgba(10, 10, 14, 0.75);
+  touch-action: none;
+  user-select: none;
+  box-shadow: inset 0 0 110px rgba(0, 0, 0, 0.65), 0 0 46px rgba(255, 23, 68, 0.14);
+}
+
+.arena-section .ar-stage-wrap::before,
+.arena-section .ar-stage-wrap::after {
+  content: "";
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  border: 2px solid var(--ar-red);
+  pointer-events: none;
+  z-index: 5;
+}
+.arena-section .ar-stage-wrap::before {
+  top: -1px;
+  left: -1px;
+  border-right: 0;
+  border-bottom: 0;
+}
+.arena-section .ar-stage-wrap::after {
+  bottom: -1px;
+  right: -1px;
+  border-left: 0;
+  border-top: 0;
+}
+
+.arena-section svg.ar-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  overflow: visible;
+}
+
+.arena-section .ar-hint {
+  position: absolute;
+  left: 12px;
+  bottom: 10px;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  color: var(--ar-mute);
+  pointer-events: none;
+  font-family: "Space Mono", monospace;
+  background: rgba(5, 4, 10, 0.7);
+  padding: 4px 8px;
+  border-radius: 2px;
+}
+.arena-section .ar-hint b {
+  color: var(--ar-red);
+}
+
+.arena-section .bot {
+  cursor: grab;
+  outline: none;
+}
+.arena-section .bot:active {
+  cursor: grabbing;
+}
+
+.arena-section .tag circle {
+  fill: #07070a;
+  stroke: var(--ar-red);
+  stroke-width: 2;
+}
+.arena-section .tag text {
+  fill: #fff;
+  font: 700 11px "Rajdhani", sans-serif;
+  text-anchor: middle;
+}
+.arena-section .tag .pill {
+  opacity: 0;
+  transition: 0.25s;
+}
+.arena-section .tag .pill rect {
+  fill: var(--ar-red);
+}
+.arena-section .tag .pill text {
+  font: 800 10px "Orbitron", sans-serif;
+  letter-spacing: 0.08em;
+}
+
+.arena-section .bot:hover .pill,
+.arena-section .bot.sel .pill,
+.arena-section .bot:focus-visible .pill {
+  opacity: 1;
+}
+.arena-section .bot.sel .tag circle {
+  fill: var(--ar-red);
+}
+
+.arena-section .ring {
+  fill: none;
+  stroke: var(--ar-red);
+  stroke-width: 3.5;
+  stroke-dasharray: 14 8;
+  filter: drop-shadow(0 0 8px var(--ar-red));
+  animation: ar-sp 5s linear infinite;
+}
+@keyframes ar-sp {
+  to {
+    stroke-dashoffset: -88;
+  }
+}
+
+.arena-section .rip {
+  fill: none;
+  stroke: var(--ar-red);
+  stroke-width: 3;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: ar-rp 0.7s ease-out forwards;
+}
+@keyframes ar-rp {
+  from {
+    transform: scale(0.2);
+    opacity: 1;
+  }
+  to {
+    transform: scale(2.6);
+    opacity: 0;
+  }
+}
+
+.arena-section .dust {
+  fill: rgba(255, 23, 68, 0.5);
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: ar-du 0.6s ease-out forwards;
+}
+@keyframes ar-du {
+  to {
+    transform: scale(2.5) translateY(-6px);
+    opacity: 0;
+  }
+}
+
+.arena-section .mark {
+  fill: none;
+  stroke: #fff;
+  stroke-width: 2;
+  animation: ar-mk 1s ease-out forwards;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+@keyframes ar-mk {
+  from {
+    transform: scale(1.8);
+    opacity: 1;
+  }
+  to {
+    transform: scale(0.3);
+    opacity: 0;
+  }
+}
+
+.arena-section .spin {
+  animation: ar-spn 0.45s linear infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+@keyframes ar-spn {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.arena-section .arm {
+  animation: ar-arm 2.4s ease-in-out infinite alternate;
+  transform-origin: 0 -34px;
+}
+@keyframes ar-arm {
+  from {
+    transform: rotate(-14deg);
+  }
+  to {
+    transform: rotate(16deg);
+  }
+}
+
+.arena-section .blink {
+  animation: ar-bk 1.2s steps(2) infinite;
+}
+@keyframes ar-bk {
+  50% {
+    opacity: 0.25;
+  }
+}
+
+.arena-section .spark {
+  fill: #fff;
+  animation: ar-sk 0.4s ease-out forwards;
+}
+@keyframes ar-sk {
+  to {
+    transform: translate(var(--dx), var(--dy));
+    opacity: 0;
+  }
+}
+
+.arena-section .flk {
+  animation: ar-fk 0.12s steps(2) infinite;
+  transform-box: fill-box;
+  transform-origin: right center;
+}
+@keyframes ar-fk {
+  50% {
+    transform: scaleX(0.7);
+  }
+}
+
+.arena-section .shake {
+  animation: ar-shk 0.25s;
+}
+@keyframes ar-shk {
+  25% {
+    transform: translate(3px, -2px);
+  }
+  75% {
+    transform: translate(-3px, 2px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .arena-section .spin,
+  .arena-section .arm,
+  .arena-section .ring,
+  .arena-section .blink,
+  .arena-section .flk,
+  .arena-section .shake {
+    animation: none;
+  }
+}
+
+.arena-section .ar-panel {
+  border: 1px solid var(--ar-line);
+  border-left: 3px solid var(--ar-red);
+  background: var(--ar-panel);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 0 100%);
+}
+
+.arena-section .ar-num {
+  font: 800 68px/1 "Orbitron", sans-serif;
+  color: transparent;
+  -webkit-text-stroke: 2px var(--ar-red);
+  text-shadow: 0 0 22px var(--ar-glow);
+}
+
+.arena-section .ar-k {
+  color: var(--ar-red);
+  font-size: 12px;
+  letter-spacing: 0.3em;
+  font-weight: 700;
+}
+.arena-section .ar-nm {
+  font: 800 22px "Orbitron", sans-serif;
+  letter-spacing: 0.06em;
+  color: #fff;
+}
+.arena-section .ar-tg {
+  color: var(--ar-mute);
+  font-size: 15px;
+  line-height: 1.35;
+}
+
+.arena-section .ar-stat-bar {
+  display: grid;
+  grid-template-columns: 78px minmax(0, 1fr) 28px;
+  gap: 8px;
+  align-items: center;
+  font-size: 13px;
+  letter-spacing: 0.14em;
+  font-family: "Rajdhani", system-ui, sans-serif;
+  font-weight: 700;
+  color: #fff;
+  width: 100%;
+  box-sizing: border-box;
+  min-width: 0;
+}
+.arena-section .ar-stat-bar span {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.arena-section .ar-stat-bar b {
+  font-family: "Orbitron", sans-serif;
+  font-size: 11px;
+  text-align: right;
+  letter-spacing: 0.04em;
+}
+.arena-section .ar-stat-bar i {
+  height: 8px;
+  background: #1b1b23;
+  position: relative;
+  overflow: hidden;
+  min-width: 0;
+}
+.arena-section .ar-stat-bar i::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: var(--v, 0%);
+  background: linear-gradient(90deg, #7a0020, var(--ar-red));
+  box-shadow: 0 0 10px var(--ar-glow);
+  transition: width 0.6s cubic-bezier(0.2, 0.9, 0.3, 1);
+}
+
+.arena-section .ar-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px;
+  width: 100%;
+  box-sizing: border-box;
+}
+.arena-section .ar-list button {
+  all: unset;
+  cursor: pointer;
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  padding: 8px 6px;
+  border: 1px solid var(--ar-line);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  font-family: "Rajdhani", system-ui, sans-serif;
+  color: #fff;
+  transition: 0.2s;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.arena-section .ar-list button i {
+  font: 800 11px "Orbitron", sans-serif;
+  color: var(--ar-red);
+  font-style: normal;
+  flex-shrink: 0;
+}
+.arena-section .ar-list button span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: block;
+  min-width: 0;
+}
+.arena-section .ar-list button:hover,
+.arena-section .ar-list button[aria-pressed="true"] {
+  border-color: var(--ar-red);
+  background: rgba(255, 23, 68, 0.15);
+  box-shadow: 0 0 14px rgba(255, 23, 68, 0.3);
+}
+.arena-section .ar-list button:focus-visible,
+.arena-section .ar-reset-btn:focus-visible {
+  outline: 2px solid #fff;
+}
+
+.arena-section .ar-reset-btn {
+  all: unset;
+  cursor: pointer;
+  text-align: center;
+  padding: 12px;
+  border: 1px solid var(--ar-red);
+  color: var(--ar-red);
+  font: 800 12px "Orbitron", sans-serif;
+  letter-spacing: 0.2em;
+  transition: 0.3s;
+  box-sizing: border-box;
+}
+.arena-section .ar-reset-btn:hover {
+  background: var(--ar-red);
+  color: #000;
+}
+
+.arena-section .sweep {
+  animation: ar-sw 7s linear infinite;
+}
+@keyframes ar-sw {
+  from {
+    transform: translateX(0) skewX(-28deg);
+  }
+  to {
+    transform: translateX(1100px) skewX(-28deg);
+  }
+}
+
+.arena-section .mote {
+  fill: #ff5a78;
+  opacity: 0;
+  animation: ar-mt linear infinite;
+}
+@keyframes ar-mt {
+  0% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+  20% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-70px);
+  }
+}
+
+.arena-section .pls {
+  animation: ar-pl 1.6s ease-in-out infinite alternate;
+}
+@keyframes ar-pl {
+  from {
+    opacity: 0.4;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.arena-section .ar-ctl {
+  display: none;
+  grid-column: 1 / -1;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 6px 0;
+  touch-action: none;
+  user-select: none;
+}
+.arena-section .ar-joy {
+  position: relative;
+  width: 128px;
+  height: 128px;
+  border-radius: 50%;
+  border: 2px solid var(--ar-red);
+  background: radial-gradient(circle, rgba(255, 23, 68, 0.18), rgba(14, 14, 19, 0.85));
+  box-shadow: 0 0 18px var(--ar-glow), inset 0 0 16px rgba(255, 23, 68, 0.3);
+  touch-action: none;
+}
+.arena-section .ar-joy i {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 52px;
+  height: 52px;
+  margin: -26px 0 0 -26px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #ff7d96, var(--ar-red) 60%, #7a0020);
+  border: 2px solid #000;
+  box-shadow: 0 0 14px var(--ar-glow);
+}
+.arena-section .ar-cb {
+  display: flex;
+  gap: 12px;
+}
+.arena-section .ar-cb button {
+  all: unset;
+  cursor: pointer;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  border: 2px solid var(--ar-red);
+  background: rgba(14, 14, 19, 0.9);
+  color: var(--ar-red);
+  font: 800 12px "Orbitron", sans-serif;
+  letter-spacing: 0.12em;
+  box-shadow: 0 0 16px var(--ar-glow);
+  touch-action: none;
+}
+.arena-section .ar-cb button:active {
+  background: var(--ar-red);
+  color: #000;
+}
+
+@media (max-width: 960px) {
+  .arena-section {
+    padding: 30px 12px 36px;
+  }
+  .arena-section .ar-main {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  .arena-section .ar-panel {
+    max-width: 600px;
+    margin: 0 auto;
+    width: 100%;
+  }
+}
+
+@media (pointer: coarse), (max-width: 768px) {
+  .arena-section {
+    padding: 24px 10px 28px;
+  }
+  .arena-section .ar-ctl {
+    display: flex;
+  }
+  .arena-section .ar-hint {
+    display: none;
+  }
+  .arena-section .ar-header {
+    padding: 8px 6px 4px;
+    gap: 10px;
+  }
+  .arena-section .ar-score {
+    font-size: 22px;
+    padding: 4px 12px;
+    margin-left: auto;
+  }
+  .arena-section .ar-sub {
+    font-size: 10px;
+    letter-spacing: 0.25em;
+  }
+  .arena-section .ar-main {
+    padding: 4px 4px 16px;
+  }
+}
+
+@media (max-width: 520px) {
+  .arena-section {
+    padding: 18px 8px 20px;
+  }
+  .arena-section .ar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+  }
+  .arena-section .ar-logo {
+    width: 36px;
+    height: 36px;
+    flex-shrink: 0;
+  }
+  .arena-section .ar-title {
+    font-size: 16px;
+  }
+  .arena-section .ar-sub {
+    font-size: 9px;
+    letter-spacing: 0.15em;
+  }
+  .arena-section .ar-score {
+    font-size: 18px;
+    padding: 3px 10px;
+  }
+  .arena-section .ar-ctl {
+    padding: 8px 0 0;
+    gap: 8px;
+  }
+  .arena-section .ar-joy {
+    width: 104px;
+    height: 104px;
+  }
+  .arena-section .ar-joy i {
+    width: 44px;
+    height: 44px;
+    margin: -22px 0 0 -22px;
+  }
+  .arena-section .ar-cb {
+    gap: 8px;
+  }
+  .arena-section .ar-cb button {
+    width: 66px;
+    height: 66px;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+  }
+  .arena-section .ar-panel {
+    padding: 12px;
+    gap: 10px;
+  }
+  .arena-section .ar-num {
+    font-size: 46px;
+  }
+  .arena-section .ar-nm {
+    font-size: 18px;
+  }
+  .arena-section .ar-tg {
+    font-size: 13px;
+  }
+  .arena-section .ar-stat-bar {
+    font-size: 11px;
+    grid-template-columns: 66px minmax(0, 1fr) 24px;
+    gap: 6px;
+  }
+  .arena-section .ar-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 4px;
+  }
+  .arena-section .ar-list button {
+    padding: 6px 4px;
+    font-size: 11px;
+    gap: 4px;
+  }
+  .arena-section .ar-list button i {
+    font-size: 10px;
+  }
+  .arena-section .ar-reset-btn {
+    padding: 10px;
+    font-size: 11px;
+  }
+}
+
