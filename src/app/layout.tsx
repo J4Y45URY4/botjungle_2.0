@@ -2,8 +2,9 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "BOT JUNGLE 2.0 — Robotics Competitions",
-  description: "Six arenas. One jungle of machines. Build it. Wire it. Send it.",
+  title: "IEEE RAS CUSAT SBC Presents BOT JUNGLE 2.0 — Robotics Arena",
+  description:
+    "IEEE RAS CUSAT SBC presents Bot Jungle 2.0. Six arenas. One jungle of machines. December 5 at School of Engineering, CUSAT.",
 };
 
 export const viewport: Viewport = {
